@@ -1,0 +1,32 @@
+{
+  "version": "39.0.0",
+  "files": {
+    "12dabc8c98c378a747e704fad56a582ea1da43e546772c325b740fe56dd5cf9b": {
+      "source": {
+        "path": "RemoveBackgroundFunctionStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "current_account-current_region": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
+          "objectKey": "12dabc8c98c378a747e704fad56a582ea1da43e546772c325b740fe56dd5cf9b.json",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
+        }
+      }
+    }
+  },
+  "dockerImages": {
+    "70ae6300b365b29db2410ff57ce267484f9e8c8e351197fc3668fa7887dfb73e": {
+      "source": {
+        "directory": "asset.70ae6300b365b29db2410ff57ce267484f9e8c8e351197fc3668fa7887dfb73e"
+      },
+      "destinations": {
+        "current_account-current_region": {
+          "repositoryName": "cdk-hnb659fds-container-assets-${AWS::AccountId}-${AWS::Region}",
+          "imageTag": "70ae6300b365b29db2410ff57ce267484f9e8c8e351197fc3668fa7887dfb73e",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-image-publishing-role-${AWS::AccountId}-${AWS::Region}"
+        }
+      }
+    }
+  }
+}

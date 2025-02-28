@@ -1,0 +1,306 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "RemoveBackgroundFunctionStack": {
+        "id": "RemoveBackgroundFunctionStack",
+        "path": "RemoveBackgroundFunctionStack",
+        "children": {
+          "DockerFunc": {
+            "id": "DockerFunc",
+            "path": "RemoveBackgroundFunctionStack/DockerFunc",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "RemoveBackgroundFunctionStack/DockerFunc/ServiceRole",
+                "children": {
+                  "ImportServiceRole": {
+                    "id": "ImportServiceRole",
+                    "path": "RemoveBackgroundFunctionStack/DockerFunc/ServiceRole/ImportServiceRole",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.179.0",
+                      "metadata": [
+                        "*"
+                      ]
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "RemoveBackgroundFunctionStack/DockerFunc/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                      "version": "2.179.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Role",
+                  "version": "2.179.0",
+                  "metadata": [
+                    {
+                      "assumedBy": {
+                        "principalAccount": "*",
+                        "assumeRoleAction": "*"
+                      },
+                      "managedPolicies": [
+                        {
+                          "managedPolicyArn": "*"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              "AssetImage": {
+                "id": "AssetImage",
+                "path": "RemoveBackgroundFunctionStack/DockerFunc/AssetImage",
+                "children": {
+                  "Staging": {
+                    "id": "Staging",
+                    "path": "RemoveBackgroundFunctionStack/DockerFunc/AssetImage/Staging",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.AssetStaging",
+                      "version": "2.179.0"
+                    }
+                  },
+                  "Repository": {
+                    "id": "Repository",
+                    "path": "RemoveBackgroundFunctionStack/DockerFunc/AssetImage/Repository",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ecr.RepositoryBase",
+                      "version": "2.179.0",
+                      "metadata": []
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecr_assets.DockerImageAsset",
+                  "version": "2.179.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "RemoveBackgroundFunctionStack/DockerFunc/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "imageUri": {
+                        "Fn::Sub": "${AWS::AccountId}.dkr.ecr.${AWS::Region}.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-${AWS::AccountId}-${AWS::Region}:70ae6300b365b29db2410ff57ce267484f9e8c8e351197fc3668fa7887dfb73e"
+                      }
+                    },
+                    "memorySize": 2000,
+                    "packageType": "Image",
+                    "role": {
+                      "Fn::GetAtt": [
+                        "DockerFuncServiceRole8031C1C5",
+                        "Arn"
+                      ]
+                    },
+                    "timeout": 120
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
+                  "version": "2.179.0"
+                }
+              },
+              "FunctionUrl": {
+                "id": "FunctionUrl",
+                "path": "RemoveBackgroundFunctionStack/DockerFunc/FunctionUrl",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "RemoveBackgroundFunctionStack/DockerFunc/FunctionUrl/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Lambda::Url",
+                      "aws:cdk:cloudformation:props": {
+                        "authType": "NONE",
+                        "cors": {
+                          "allowHeaders": [
+                            "*"
+                          ],
+                          "allowMethods": [
+                            "*"
+                          ],
+                          "allowOrigins": [
+                            "*"
+                          ]
+                        },
+                        "targetFunctionArn": {
+                          "Fn::GetAtt": [
+                            "DockerFuncF47DA747",
+                            "Arn"
+                          ]
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_lambda.CfnUrl",
+                      "version": "2.179.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda.FunctionUrl",
+                  "version": "2.179.0",
+                  "metadata": [
+                    {
+                      "function": "*",
+                      "authType": "NONE",
+                      "cors": {
+                        "allowedMethods": [
+                          "*"
+                        ],
+                        "allowedHeaders": "*",
+                        "allowedOrigins": "*"
+                      }
+                    }
+                  ]
+                }
+              },
+              "invoke-function-url": {
+                "id": "invoke-function-url",
+                "path": "RemoveBackgroundFunctionStack/DockerFunc/invoke-function-url",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                  "aws:cdk:cloudformation:props": {
+                    "action": "lambda:InvokeFunctionUrl",
+                    "functionName": {
+                      "Fn::GetAtt": [
+                        "DockerFuncF47DA747",
+                        "Arn"
+                      ]
+                    },
+                    "functionUrlAuthType": "NONE",
+                    "principal": "*"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                  "version": "2.179.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_lambda.DockerImageFunction",
+              "version": "2.179.0",
+              "metadata": [
+                {
+                  "code": "*",
+                  "memorySize": "*",
+                  "timeout": "*"
+                },
+                {
+                  "code": "*",
+                  "memorySize": "*",
+                  "timeout": "*"
+                }
+              ]
+            }
+          },
+          "FunctionUrlValue": {
+            "id": "FunctionUrlValue",
+            "path": "RemoveBackgroundFunctionStack/FunctionUrlValue",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.179.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "RemoveBackgroundFunctionStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "RemoveBackgroundFunctionStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.179.0"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "RemoveBackgroundFunctionStack/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnCondition",
+                  "version": "2.179.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.4.2"
+            }
+          },
+          "BootstrapVersion": {
+            "id": "BootstrapVersion",
+            "path": "RemoveBackgroundFunctionStack/BootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.179.0"
+            }
+          },
+          "CheckBootstrapVersion": {
+            "id": "CheckBootstrapVersion",
+            "path": "RemoveBackgroundFunctionStack/CheckBootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnRule",
+              "version": "2.179.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.179.0"
+        }
+      },
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree",
+        "constructInfo": {
+          "fqn": "constructs.Construct",
+          "version": "10.4.2"
+        }
+      }
+    },
+    "constructInfo": {
+      "fqn": "aws-cdk-lib.App",
+      "version": "2.179.0"
+    }
+  }
+}

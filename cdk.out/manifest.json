@@ -1,0 +1,157 @@
+{
+  "version": "39.0.0",
+  "artifacts": {
+    "RemoveBackgroundFunctionStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "RemoveBackgroundFunctionStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "RemoveBackgroundFunctionStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "RemoveBackgroundFunctionStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/12dabc8c98c378a747e704fad56a582ea1da43e546772c325b740fe56dd5cf9b.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "RemoveBackgroundFunctionStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "RemoveBackgroundFunctionStack.assets"
+      ],
+      "metadata": {
+        "/RemoveBackgroundFunctionStack/DockerFunc": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "code": "*",
+              "memorySize": "*",
+              "timeout": "*"
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "code": "*",
+              "memorySize": "*",
+              "timeout": "*"
+            }
+          }
+        ],
+        "/RemoveBackgroundFunctionStack/DockerFunc/ServiceRole": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "assumedBy": {
+                "principalAccount": "*",
+                "assumeRoleAction": "*"
+              },
+              "managedPolicies": [
+                {
+                  "managedPolicyArn": "*"
+                }
+              ]
+            }
+          }
+        ],
+        "/RemoveBackgroundFunctionStack/DockerFunc/ServiceRole/ImportServiceRole": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": "*"
+          }
+        ],
+        "/RemoveBackgroundFunctionStack/DockerFunc/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DockerFuncServiceRole8031C1C5"
+          }
+        ],
+        "/RemoveBackgroundFunctionStack/DockerFunc/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DockerFuncF47DA747"
+          }
+        ],
+        "/RemoveBackgroundFunctionStack/DockerFunc/FunctionUrl": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "function": "*",
+              "authType": "NONE",
+              "cors": {
+                "allowedMethods": [
+                  "*"
+                ],
+                "allowedHeaders": "*",
+                "allowedOrigins": "*"
+              }
+            }
+          }
+        ],
+        "/RemoveBackgroundFunctionStack/DockerFunc/FunctionUrl/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DockerFuncFunctionUrlFE69B12B"
+          }
+        ],
+        "/RemoveBackgroundFunctionStack/DockerFunc/invoke-function-url": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DockerFuncinvokefunctionurlB084CBAE"
+          }
+        ],
+        "/RemoveBackgroundFunctionStack/FunctionUrlValue": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FunctionUrlValue"
+          }
+        ],
+        "/RemoveBackgroundFunctionStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/RemoveBackgroundFunctionStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/RemoveBackgroundFunctionStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/RemoveBackgroundFunctionStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "RemoveBackgroundFunctionStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}
