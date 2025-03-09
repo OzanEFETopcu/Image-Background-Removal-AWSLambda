@@ -1,6 +1,10 @@
 # Image Background Remover Function
 **This is a lambda function written in python, specifically using rembg and pillow libraries, that takes a base64 encoded image and removes its background and returns it the same format**
 
+## Update Version 2.0:
+After a long and trial process of trying to implement rembg wihtout scraping the library into bare skeleton and reaching to no measurable decrease on the cold start duration of the lambda function I found out that the only thing that was keeping the initial 
+response time at 100+ seconds was the import of rembg library, so I decided to lower the version of Python to 3.9 and installed the rembg-aws-lambda package that is the fork of the original rembg file (more information about this project further in the README).
+
 ## Technical Specifications:
 - Deployed using AWS Cloudformation IaC
 - The project gets hosted on ECR as a Docker container (Due to size constraints of the rembg libraries other methods of function deployment is not possible)
@@ -35,4 +39,4 @@ Of course there is also another option, getting rid of all the unnecessary files
 ## Possible Future Updates:
 - [x] Fix the "rembg" download issue on read-only directory of Lambda
 - [ ] Use AWS API Gateway and implement security practices to prevent the abuse of requests
-- [ ] Optimize the cold-start time of the function as the initial request can take upto 100 seconds with downloading of the libraries
+- [x] Optimize the cold-start time of the function as the initial request can take upto 100 seconds with downloading of the libraries

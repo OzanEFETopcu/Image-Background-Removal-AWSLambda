@@ -1,17 +1,17 @@
 import json
 import logging
 import base64
-import onnxruntime
 from rembg import remove
 from PIL import Image
 from io import BytesIO
-from datetime import datetime
-import uuid
-import os
 
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
+
+
+# init code
+print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 
 def lambda_handler(event, context):
     try:
@@ -33,15 +33,13 @@ def lambda_handler(event, context):
         # Görüntüyü PIL Image nesnesine dönüştür
         input_image = Image.open(BytesIO(image_data))
         # Arka planı kaldır
-        output_image = remove(input_image)
+        output_image = remove(input_image, alpha_matting = False)
         # Çıktıyı byte dizisine dönüştür
         img_io = BytesIO()
         output_image.save(img_io, 'PNG')
         img_io.seek(0)
         # Benzersiz dosya adı oluştur
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        unique_id = str(uuid.uuid4())[:8]
-        new_filename = f"processed_{timestamp}_{unique_id}_nobg.png"
+        new_filename = "nobg.png"
             
         # Base64 encoded response döndür
         return {
